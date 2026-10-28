@@ -1,0 +1,34 @@
+﻿[00:27:31] phase=d5 ac_power=True sha256_ok=True
+warm-up (compile): 7.4s
+  expectimax d=5 seed=  0: score=  51460 max= 4096 moves= 2365 wall=   54.44s
+  expectimax d=5 seed=  1: score=  15452 max= 1024 moves=  898 wall=   24.65s
+  expectimax d=5 seed=  2: score=  72724 max= 4096 moves= 3362 wall=   61.43s
+  expectimax d=5 seed=  3: score=  45292 max= 4096 moves= 1979 wall=   43.92s
+  expectimax d=5 seed=  4: score=  60516 max= 4096 moves= 2819 wall=   61.38s
+  expectimax d=5 seed=  5: score=  32196 max= 2048 moves= 1649 wall=   42.42s
+  expectimax d=5 seed=  6: score=  80776 max= 4096 moves= 3764 wall=   68.26s
+  expectimax d=5 seed=  7: score=  75616 max= 4096 moves= 3447 wall=   65.18s
+  expectimax d=5 seed=  8: score=  33264 max= 2048 moves= 1733 wall=   41.15s
+  expectimax d=5 seed=  9: score=  32288 max= 2048 moves= 1651 wall=   36.16s
+  expectimax d=5 seed= 10: score=  57688 max= 4096 moves= 2658 wall=   56.71s
+  expectimax d=5 seed= 11: score=  54632 max= 4096 moves= 2454 wall=   53.33s
+  expectimax d=5 seed= 12: score=  35480 max= 2048 moves= 1839 wall=   45.73s
+  expectimax d=5 seed= 13: score=  33576 max= 2048 moves= 1757 wall=   39.11s
+  expectimax d=5 seed= 14: score=  36376 max= 2048 moves= 1899 wall=   38.48s
+  expectimax d=5 seed= 15: score=  79004 max= 4096 moves= 3681 wall=   70.51s
+  expectimax d=5 seed= 16: score=  71072 max= 4096 moves= 3225 wall=   68.96s
+  expectimax d=5 seed= 17: score=  36280 max= 2048 moves= 1889 wall=   41.89s
+  expectimax d=5 seed= 18: score=  67044 max= 4096 moves= 3005 wall=   63.19s
+  expectimax d=5 seed= 19: score=  60572 max= 4096 moves= 2833 wall=   63.10s
+  expectimax d=5 seed= 20: score= 103700 max= 8192 moves= 4171 wall=   90.23s
+  expectimax d=5 seed= 21: score=  77020 max= 4096 moves= 3523 wall=   74.60s
+  expectimax d=5 seed= 22: score=  31200 max= 2048 moves= 1572 wall=   38.01s
+  expectimax d=5 seed= 23: score=  45640 max= 4096 moves= 1988 wall=   46.35s
+  expectimax d=5 seed= 24: score= 124044 max= 8192 moves= 5137 wall=   98.60s
+  expectimax d=5 seed= 25: score=  56872 max= 4096 moves= 2627 wall=   59.87s
+  expectimax d=5 seed= 26: score=  72288 max= 4096 moves= 3347 wall=   66.86s
+  expectimax d=5 seed= 27: score=  36368 max= 2048 moves= 1902 wall=   46.22s
+  expectimax d=5 seed= 28: score=  47300 max= 4096 moves= 2102 wall=   53.63s
+  expectimax d=5 seed= 29: score=  37212 max= 2048 moves= 1952 wall=   46.76s
+[00:55:20] done expectimax d=5 (1661s)
+ac_power at end=True
