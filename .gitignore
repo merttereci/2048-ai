@@ -18,6 +18,10 @@ env/
 # Archives
 *.zip
 
+# Game graphs saved by main.py
+alfabeta_d*_*.png
+expectimax_d*_*.png
+
 # IDE / OS
 .vscode/
 .idea/
