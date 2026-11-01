@@ -1,8 +1,8 @@
 **English** | [Türkçe](README.tr.md)
 
-# 2048 AI
+# Alpha-Beta vs Expectimax in 2048
 
-A 2048 game written in Python with two search agents, Alpha-Beta and Expectimax. You can play it yourself or watch an agent play, and a headless benchmark mode compares the agents over many games. Game logic, the board evaluation and the search functions are compiled with Numba.
+Two search agents, Alpha-Beta and Expectimax, play 2048 on their own and are compared on the same seeded games. Alpha-Beta treats each new tile as an adversary that places it in the worst possible spot, while Expectimax treats it as the random event it actually is. Over 100 games, Expectimax at depth 3 reached the 2048 tile in 74% of games, while Alpha-Beta's best setting reached it in 40%. The game is built with Pygame and serves as the environment the agents play in. Search and evaluation are compiled with Numba.
 
 ![Expectimax agent playing 2048](docs/images/demo.gif)
 

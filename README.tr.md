@@ -1,8 +1,8 @@
 [English](README.md) | **Türkçe**
 
-# 2048 AI
+# 2048'de Alfa-Beta ve Expectimax Karşılaştırması
 
-Python ile yazılmış, Alfa-Beta ve Expectimax olmak üzere iki arama ajanı içeren bir 2048 oyunu. Oyunu kendiniz oynayabilir ya da bir ajanın oynamasını izleyebilirsiniz. Arayüzsüz benchmark modu iki ajanı çok sayıda oyun üzerinden karşılaştırır. Oyun mantığı, tahta değerlendirmesi ve arama fonksiyonları Numba ile derleniyor.
+2048'i insan müdahalesi olmadan oynayan iki arama ajanı, Alfa-Beta ve Expectimax, aynı tohumlu oyunlar üzerinde karşılaştırılıyor. Alfa-Beta yeni gelen taşı onu en kötü yere koyan bir rakip gibi görürken, Expectimax taşın gerçekte olduğu gibi rastgele geldiğini hesaba katıyor. 100 oyunluk testte derinlik 3'teki Expectimax oyunların %74'ünde 2048 taşına ulaştı, Alfa-Beta en iyi ayarında %40'ta kaldı. Oyun Pygame ile yazıldı ve ajanların çalıştığı ortam olarak kullanılıyor, arama ve değerlendirme fonksiyonları Numba ile derleniyor.
 
 ![2048 oynayan Expectimax ajanı](docs/images/demo.gif)
 
