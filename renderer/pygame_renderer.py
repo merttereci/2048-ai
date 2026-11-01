@@ -91,6 +91,11 @@ class PygameRenderer:
         )
         
         text_surface = self.status_font.render(text, True, TEXT_COLOR_DARK)
+        # Metin pencereden genişse orantılı küçült, yoksa iki yandan kesilir
+        max_width = WINDOW_WIDTH - 2 * GRID_PADDING
+        if text_surface.get_width() > max_width:
+            height = round(text_surface.get_height() * max_width / text_surface.get_width())
+            text_surface = pygame.transform.smoothscale(text_surface, (max_width, height))
         text_rect = text_surface.get_rect(center=(WINDOW_WIDTH // 2, self.status_bar_height // 2))
         self.screen.blit(text_surface, text_rect)
     
