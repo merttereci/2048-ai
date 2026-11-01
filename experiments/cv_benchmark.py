@@ -1,7 +1,7 @@
 """
 CV benchmark - oyun kodunu degistirmeden, sadece olcum yapan betik.
 
-Kullanim (proje kokunden, D:\\2048):
+Kullanim (proje kokunden):
     python experiments/cv_benchmark.py sysinfo
     python experiments/cv_benchmark.py speedup
     python experiments/cv_benchmark.py games --phase main
@@ -15,8 +15,12 @@ Notlar:
   hem `numpy.random` her oyundan once tohumlanir. Board sadece `random`
   kullanir; numpy tohumu istek uzerine ayrica atilir.
 - Ajanlar deterministik oldugundan ayni tohum + ayni ajan/derinlik = ayni oyun.
-- Ajanin kendi `thinking_time` sayaci time.time() kullanir (Windows'ta ~15.6 ms
-  cozunurluk). Bu yuzden ayrica time.perf_counter() ile duvar saati olculur.
+- results/sysinfo.json'daki SHA-256 ozetleri reponun ilk commit'indeki
+  kaynak dosyalarla eslesir. O surumde ajanin `thinking_time` sayaci time.time()
+  kullaniyordu (Windows'ta ~15.6 ms cozunurluk), `agent_time_s` sutunu bununla
+  olculdu. Ozetteki sureler time.perf_counter() ile olculen duvar saatinden
+  (`wall_time_s`) hesaplanir.
+- Betik results/ altindaki dosyalarin uzerine yazar.
 """
 
 import argparse
@@ -114,7 +118,8 @@ def source_hashes():
     hashes = {}
     for rel in SOURCE_FILES:
         with open(os.path.join(ROOT, rel), 'rb') as f:
-            hashes[rel] = hashlib.sha256(f.read()).hexdigest()
+            # Windows'ta git CRLF ile cekebilir, ozet satir sonundan bagimsiz olsun diye LF'ye cevrilir
+            hashes[rel] = hashlib.sha256(f.read().replace(b'\r\n', b'\n')).hexdigest()
     return hashes
 
 
