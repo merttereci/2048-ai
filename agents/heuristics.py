@@ -7,6 +7,7 @@ Kullanılan heuristikler:
 3. Birleştirme potansiyeli: Yan yana eşit değerler
 4. Köşe bonusu: En büyük kutucuk köşede mi?
 5. Pürüzsüzlük: Komşu hücreler arası fark (düşük = iyi)
+6. Yılan deseni: Kutucukların sol üst köşeden başlayan yılan sırasına dizilmesi
 """
 
 import math

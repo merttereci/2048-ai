@@ -2,6 +2,7 @@
 
 import sys
 import os
+import random
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
@@ -36,6 +37,7 @@ def run_benchmark(agent_class, agent_name: str, depth: int, num_games: int):
     
     results = []
     for i in range(num_games):
+        random.seed(i)  # Her oyun kendi numarasıyla tohumlanır, iki ajan aynı başlangıçları görür
         board = Board()
         agent = agent_class(depth=depth)
         result = run_single_game(agent, board)
@@ -59,20 +61,34 @@ def run_benchmark(agent_class, agent_name: str, depth: int, num_games: int):
     return results
 
 
+def ask_int(prompt: str, default: int) -> int:
+    """Pozitif tam sayı sor. Geçersiz ya da 1'den küçük girişte varsayılanı kullan."""
+    raw = input(prompt).strip()
+    try:
+        value = int(raw)
+    except ValueError:
+        return default
+    return value if value >= 1 else default
+
+
+def warm_up():
+    """Numba derlemesini ölçümden önce yap, yoksa ilk oyunların süresine eklenir."""
+    for agent_class in (AlphaBetaAgent, ExpectimaxAgent):
+        agent_class(depth=2).get_move(Board())
+
+
 def main():
     """Benchmark ana fonksiyonu."""
     print("\n" + "=" * 50)
     print("           2048 - Benchmark Modu")
     print("=" * 50)
     
-    num_games = input("\nKac oyun? (varsayilan 10): ").strip()
-    num_games = int(num_games) if num_games.isdigit() else 10
+    num_games = ask_int("\nKac oyun? (varsayilan 10): ", 10)
+    ab_depth = ask_int("Alfa-Beta derinligi (varsayilan 4): ", 4)
+    ex_depth = ask_int("Expectimax derinligi (varsayilan 4): ", 4)
     
-    ab_depth = input("Alfa-Beta derinligi (varsayilan 4): ").strip()
-    ab_depth = int(ab_depth) if ab_depth.isdigit() else 4
-    
-    ex_depth = input("Expectimax derinligi (varsayilan 4): ").strip()
-    ex_depth = int(ex_depth) if ex_depth.isdigit() else 4
+    print("\nNumba derleniyor...")
+    warm_up()
     
     print("\nBenchmark basliyor... (GUI yok)")
     

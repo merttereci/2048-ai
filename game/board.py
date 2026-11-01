@@ -64,6 +64,10 @@ class Board:
         self.score += score
         self._add_random_tile()
         
+        # 2048'e ilk ulaşıldığında işaretle, oyun devam eder
+        if not self.won and get_max_tile(self.grid) >= 2048:
+            self.won = True
+        
         # Oyun durumu kontrolü (2048 cap yok, gidebildiği yere kadar)
         if not has_valid_moves(self.grid):
             self.game_over = True

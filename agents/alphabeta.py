@@ -25,7 +25,7 @@ from constants import GRID_SIZE
 def alphabeta_max(grid, depth, alpha, beta):
     """MAX katmanı - oyuncu hamlesi."""
     if depth == 0 or not has_valid_moves(grid):
-        return evaluate(grid), 0
+        return evaluate(grid), 1
     
     max_score = -1e18
     nodes = 1
@@ -108,12 +108,14 @@ class AlphaBetaAgent(BaseAgent):
     
     def __init__(self, depth: int = 4):
         super().__init__()
+        if depth < 1:
+            raise ValueError("Derinlik en az 1 olmali")
         self.depth = depth
         self.nodes_explored = 0
     
     def get_move(self, board: Board) -> str | None:
         """En iyi hamleyi bul."""
-        start_time = time.time()
+        start_time = time.perf_counter()
         self.nodes_explored = 0
         
         available_moves = board.get_available_moves()
@@ -139,7 +141,7 @@ class AlphaBetaAgent(BaseAgent):
             alpha = max(alpha, score)
         
         self.move_count += 1
-        self.thinking_time += time.time() - start_time
+        self.thinking_time += time.perf_counter() - start_time
         
         return best_move
     

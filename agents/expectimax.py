@@ -98,12 +98,14 @@ class ExpectimaxAgent(BaseAgent):
     
     def __init__(self, depth: int = 4):
         super().__init__()
+        if depth < 1:
+            raise ValueError("Derinlik en az 1 olmali")
         self.depth = depth
         self.nodes_explored = 0
     
     def get_move(self, board: Board) -> str | None:
         """En iyi hamleyi bul."""
-        start_time = time.time()
+        start_time = time.perf_counter()
         self.nodes_explored = 0
         
         available_moves = board.get_available_moves()
@@ -125,7 +127,7 @@ class ExpectimaxAgent(BaseAgent):
                 best_move = move
         
         self.move_count += 1
-        self.thinking_time += time.time() - start_time
+        self.thinking_time += time.perf_counter() - start_time
         
         return best_move
     

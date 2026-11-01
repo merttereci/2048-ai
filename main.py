@@ -94,8 +94,25 @@ def show_graphs(history: dict, agent_name: str, score: int, max_tile: int, depth
     plt.show()
 
 
+def ask_depth(default: int = 4) -> int:
+    """Arama derinliğini sor. Geçersiz ya da 1'den küçük girişte varsayılanı kullan."""
+    print("Derinlik katman sayisidir, oyuncu hamlesi ve tas cikisi ayri sayilir.")
+    print("Ornegin 4, iki oyuncu hamlesi ve iki tas cikisi ileriye bakar.")
+    raw = input(f"Arama derinligi (varsayilan {default}): ").strip()
+    try:
+        depth = int(raw)
+    except ValueError:
+        return default
+    return depth if depth >= 1 else default
+
+
 def run_ai_game(agent, agent_name: str, depth: int):
     """AI oyunu çalıştır ve sonuçları göster."""
+    # Numba derlemesini önceden yap, yoksa ilk hamlenin süresine eklenir
+    print("\nNumba derleniyor...")
+    agent.get_move(Board())
+    agent.reset()
+    
     board = Board()
     mode = ClassicMode(board)
     game = GameManager(mode, agent=agent)
@@ -145,15 +162,13 @@ def main():
         
         elif choice == '2':
             # Alfa-Beta AI
-            depth = input("Arama derinligi (varsayilan 4): ").strip()
-            depth = int(depth) if depth.isdigit() else 4
+            depth = ask_depth()
             agent = AlphaBetaAgent(depth=depth)
             run_ai_game(agent, "Alfa-Beta", depth)
         
         elif choice == '3':
             # Expectimax AI
-            depth = input("Arama derinligi (varsayilan 4): ").strip()
-            depth = int(depth) if depth.isdigit() else 4
+            depth = ask_depth()
             agent = ExpectimaxAgent(depth=depth)
             run_ai_game(agent, "Expectimax", depth)
         
